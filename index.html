@@ -21,7 +21,7 @@
         body: JSON.stringify({ payload}),
         headers: { "Content-type": "application/json"}
         }
-      fetch("https://git.heroku.com/school-max.git/api", options).then(res =>{
+      fetch("https://school-max.herokuapp.com/api", options).then(res =>{
           return res.json()
       }).then(data=>{
         setData(data)
