@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>schoolmax</title>
+</head>
+<body>
+  <script>
+    function setData(data){
+           let x = JSON.stringify(data,null,2 );
+          document.getElementById("test").innerHTML=x;
+    }
+    function getVal(){
+      const name = document.getElementById("name").value;
+      const pass = document.getElementById("pass").value;
+      const payload = {name,pass}
+      console.log(payload)
+      const options = {
+        method: "POST",
+        body: JSON.stringify({ payload}),
+        headers: { "Content-type": "application/json"}
+        }
+      fetch("https://git.heroku.com/school-max.git/api", options).then(res =>{
+          return res.json()
+      }).then(data=>{
+        setData(data)
+        console.log(data)
+      })
+    }
+  </script>
+  <div>
+    My api<br/>
+    <label htmlFor="name">user-name:</label><br/>
+    <input type="text" id="name" name="name" placeholder="Enter username"></input><br/>
+    <label htmlFor="pass">password:</label><br/>
+    <input type="password" id="pass" name="pass" placeholder="Enter password"></input>
+    <br/>
+    <button onClick = getVal()> fetch api</button>
+    <h1 id="test"></h1>
+</div>
+</body>
+</html>
